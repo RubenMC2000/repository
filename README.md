@@ -1,1 +1,1 @@
-# repository
+Simple linked list implementation
