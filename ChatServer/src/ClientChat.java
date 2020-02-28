@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class ClientChat implements Runnable {
+public class ClientChat {
 
     public ClientChat(){
     }
@@ -12,7 +12,7 @@ public class ClientChat implements Runnable {
         try {
             ClientChat clientChat = new ClientChat();
             clientChat.createConnection();
-            Thread thread = new Thread(clientChat);
+            Thread thread = new Thread(clientChat.clientChatRun);
             thread.start();
             while(true){
                 clientChat.receiveMessage();
@@ -31,6 +31,7 @@ public class ClientChat implements Runnable {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
+    private ClientChatRun clientChatRun = new ClientChatRun();
 
     public void createConnection(){
         Scanner scanner = new Scanner(System.in);
@@ -61,10 +62,12 @@ public class ClientChat implements Runnable {
         System.out.println(in.readLine());
     }
 
-    @Override
-    public void run() {
-        while (true) {
+    private class ClientChatRun implements Runnable{
+
+        @Override
+        public void run() {
             writeMessage();
         }
     }
+
 }
