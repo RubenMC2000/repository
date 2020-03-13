@@ -9,12 +9,13 @@ public class Wizard extends Hero {
     private static final int ATTACK_DAMAGE = 6;
     private static final int SPELL_DAMAGE = 20;
     private static final int INITIAL_HEALTH = 70;
+    private static final int MANA_COST = 25;
 
     private static final int SHIELD_PROBABILITY = 15;
 
     private boolean shield;
 
     public Wizard(String name) {
-        super(name, ATTACK_DAMAGE, SPELL_DAMAGE, INITIAL_HEALTH);
+        super(name, ATTACK_DAMAGE, SPELL_DAMAGE, INITIAL_HEALTH, MANA_COST);
     }
 }

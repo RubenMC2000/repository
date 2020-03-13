@@ -8,10 +8,23 @@ public class Troll extends Hero {
     private static final int ATTACK_DAMAGE = 8;
     private static final int SPELL_DAMAGE = 2;
     private static final int INITIAL_HEALTH = 300;
+    private static final int MANA_COST = 50;
 
     private static final int ATTACK_POSSIBILITY = 50;
 
     public Troll(String name) {
-        super(name, ATTACK_DAMAGE, SPELL_DAMAGE, INITIAL_HEALTH);
+        super(name, ATTACK_DAMAGE, SPELL_DAMAGE, INITIAL_HEALTH, MANA_COST);
+    }
+
+    @Override
+    public void attack() {
+        if(Math.random() * 100 <= ATTACK_POSSIBILITY){
+
+        }
+    }
+
+    @Override
+    public void UseSpell() {
+
     }
 }

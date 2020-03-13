@@ -1,46 +1,49 @@
 package org.academiadecodigo.papabelosbugsters;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class FileAnalyzer {
 
     public static void main(String[] args) {
         FileAnalyzer fileAnalyzer = new FileAnalyzer();
-        fileAnalyzer.readFile();
-    }
-
-    private File file = new File("file");
-    private BufferedReader bufferedReader;
-
-    public FileAnalyzer() {
         try {
-            bufferedReader = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
+            fileAnalyzer.countWords();
+            fileAnalyzer.findWordByNumberChar();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void countWords(){
-
-        Stream.of(bufferedReader)
-                .map(lines -> lines.readLine())
-                //.map(lines -> lines.split(" "))
-                .forEach(lines -> System.out::println);
+    public Stream<String> readFile() throws IOException {
+        return Files.lines(Paths.get("file"))
+                .filter(lines -> !lines.equals(""))
+                .map(lines -> lines.split(" "))
+                .flatMap(words -> Arrays.stream(words));
     }
 
-    public void readFile(){
-        Stream.of
+
+    public Stream<String> readFileBuffer() throws FileNotFoundException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("file"));
+
+        return bufferedReader.lines
     }
 
-    public void findWordByNumberChar(){
+    public void countWords() throws IOException {
+        System.out.println(readFile().count());
+    }
 
+    public void findWordByNumberChar() throws IOException {
+                readFile()
+                .filter(words -> words.)
     }
 
     public void findLongestWord(){
-
+                readFile()
+                .filter(words -> words.)
     }
 }

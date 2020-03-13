@@ -133,9 +133,7 @@ public class LinkedList<T> implements Iterable<T> {
     public <R> LinkedList<R> map(Function<T, R> mapper) {
         LinkedList<R> linkedList = new LinkedList<>();
 
-        for (T element:this) {
-            linkedList.add(mapper.apply(element));
-        }
+        this.forEach(element -> linkedList.add(mapper.apply(element)));
 
         return linkedList;
         //throw  new UnsupportedOperationException();
@@ -150,11 +148,8 @@ public class LinkedList<T> implements Iterable<T> {
     public LinkedList<T> filter(Predicate<T> predicate) {
         LinkedList<T> linkedList = new LinkedList<>();
 
-        for (T element:this) {
-            if(predicate.test(element)){
-                linkedList.add(element);
-            }
-        }
+        this.forEach(element -> {if(predicate.test(element)) linkedList.add(element);});
+
         return linkedList;
         //throw  new UnsupportedOperationException();
     }
@@ -167,6 +162,7 @@ public class LinkedList<T> implements Iterable<T> {
      * @return value resultant from the reduction of the list by applying the reducer function
      */
     public T reduce(BinaryOperator<T> reducer, T accumulator) {
+
         for (T element:this) {
              accumulator = reducer.apply(accumulator, element);
         }
